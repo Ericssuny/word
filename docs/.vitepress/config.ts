@@ -3,6 +3,7 @@ import Theme from '@sugarat/theme'
 export default defineConfig({
   title: "Eric Tech Lab",
   description: "网络 | Linux | 运维",
+  base: "/word/",
 
   lang: "zh-CN",
 
