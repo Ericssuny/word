@@ -32,6 +32,12 @@ export default defineConfig({
           items: [
             { text: "Sing-box", link: "/network/singbox" }
           ]
+        },
+        {
+          text: "ESXI",
+          items: [
+            { text: "ESXI", link: "/network/ESXI/esxi" }
+          ]
         }
       ],
 
