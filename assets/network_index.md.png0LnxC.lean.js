@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as n}from"./chunks/framework.0IE4t_O3.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"network/index.md","filePath":"network/index.md"}'),r={name:"network/index.md"};function a(o,s,c,d,i,p){return t(),n("div")}const f=e(r,[["render",a]]);export{m as __pageData,f as default};

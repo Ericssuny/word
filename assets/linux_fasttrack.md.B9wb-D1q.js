@@ -1,0 +1,1 @@
+import{_ as t,o as a,c as e}from"./chunks/framework.0IE4t_O3.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"linux/fasttrack.md","filePath":"linux/fasttrack.md"}'),r={name:"linux/fasttrack.md"};function s(c,n,o,i,f,p){return a(),e("div")}const l=t(r,[["render",s]]);export{d as __pageData,l as default};

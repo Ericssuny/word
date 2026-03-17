@@ -1,0 +1,1 @@
+import{_ as e,o as r,c as t}from"./chunks/framework.0IE4t_O3.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"network/ros/wireguard.md","filePath":"network/ros/wireguard.md"}'),a={name:"network/ros/wireguard.md"};function o(s,n,c,d,i,p){return r(),t("div")}const f=e(a,[["render",o]]);export{m as __pageData,f as default};

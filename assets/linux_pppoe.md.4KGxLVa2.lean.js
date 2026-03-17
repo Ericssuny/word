@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as p}from"./chunks/framework.0IE4t_O3.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"linux/pppoe.md","filePath":"linux/pppoe.md"}'),o={name:"linux/pppoe.md"};function a(n,r,s,c,i,_){return t(),p("div")}const m=e(o,[["render",a]]);export{l as __pageData,m as default};
