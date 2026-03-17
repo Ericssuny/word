@@ -3,39 +3,44 @@ import Theme from '@sugarat/theme'
 import fs from 'fs'
 import path from 'path'
 
-function getSidebar(dir: string) {
-  const groups: Record<string, any[]> = {}
-  const dirPath = path.join(process.cwd(), 'docs', dir)
-  
-  if (!fs.existsSync(dirPath)) return []
+function getSidebarItems(dirPath: string, basePath: string): any[] {
+  const items: any[] = []
+  if (!fs.existsSync(dirPath)) return items
 
   const entries = fs.readdirSync(dirPath, { withFileTypes: true })
-  
+
   for (const entry of entries) {
     if (entry.isDirectory()) {
-      const groupName = entry.name
-      if (!groups[groupName]) groups[groupName] = []
-      
-      const subDirPath = path.join(dirPath, entry.name)
-      const subEntries = fs.readdirSync(subDirPath, { withFileTypes: true })
-      
-      for (const subEntry of subEntries) {
-        if (subEntry.name.endsWith('.md')) {
-          const name = subEntry.name.replace('.md', '')
-          groups[groupName].push({ 
-            text: name, 
-            link: `/${dir}/${entry.name}/${name}` 
-          })
-        }
+      const subItems = getSidebarItems(path.join(dirPath, entry.name), `${basePath}/${entry.name}`)
+      if (subItems.length > 0) {
+        items.push({ text: entry.name, items: subItems })
       }
     } else if (entry.name.endsWith('.md') && entry.name !== 'index.md') {
       const name = entry.name.replace('.md', '')
-      if (!groups[dir]) groups[dir] = []
-      groups[dir].push({ text: name, link: `/${dir}/${name}` })
+      items.push({ text: name, link: `${basePath}/${name}` })
     }
   }
-  
-  return Object.entries(groups).map(([text, items]) => ({ text, items }))
+  return items
+}
+
+function generateSidebar() {
+  const docsPath = path.join(process.cwd(), 'docs')
+  const sidebar: Record<string, any[]> = {}
+
+  const entries = fs.readdirSync(docsPath, { withFileTypes: true })
+
+  for (const entry of entries) {
+    if (entry.isDirectory() && !entry.name.startsWith('.')) {
+      const dirPath = path.join(docsPath, entry.name)
+      const items = getSidebarItems(dirPath, `/${entry.name}`)
+      if (items.length > 0) {
+        sidebar[`/${entry.name}/`] = [
+          { text: entry.name, collapsed: true, items }
+        ]
+      }
+    }
+  }
+  return sidebar
 }
 
 export default defineConfig({
@@ -53,10 +58,7 @@ export default defineConfig({
       { text: "Linux", link: "/linux/" }
     ],
 
-    sidebar: {
-      "/network/": getSidebar('network'),
-      "/linux/": getSidebar('linux')
-    }
+    sidebar: generateSidebar()
 
   }
 
